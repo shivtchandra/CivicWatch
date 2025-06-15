@@ -178,12 +178,6 @@ We welcome contributions to CivicWatch! To contribute:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
----
-
 ## 📫 Contact
 
 > Maintainer: [shivachandra9490@gmail.com](mailto:shivachandra9490@gmail.com)
