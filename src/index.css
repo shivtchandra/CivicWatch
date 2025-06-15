@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Whitespace-driven, frictionless design system with neutral tones and invisible UI */
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;             /* black */
+    --foreground: 0 0% 98%;            /* white */
+
+    --card: 0 0% 0%;                   /* black */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 0%;                /* black */
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 0%;              /* black */
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 40% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 65%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 80%;
+    --sidebar-primary: 0 0% 70%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 0%;
+    --sidebar-accent-foreground: 0 0% 80%;
+    --sidebar-border: 0 0% 10%;
+    --sidebar-ring: 0 0% 55%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;                /* black */
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;                      /* black */
+    --card-foreground: 0 0% 100%;
+
+    --primary: 0 0% 75%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 0%;                 /* black */
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 0%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 0%;                    /* black */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 40% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 65%;
+
+    --sidebar-background: 0 0% 0%;         /* black */
+    --sidebar-foreground: 0 0% 80%;
+    --sidebar-primary: 0 0% 70%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 0%;
+    --sidebar-accent-foreground: 0 0% 80%;
+    --sidebar-border: 0 0% 10%;
+    --sidebar-ring: 0 0% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border transition-all duration-200;
+  }
+
+  body {
+    @apply text-white;
+    background: #000 !important;
+    min-height: 100vh;
+    transition: background 0.8s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    z-index: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Whitespace-driven utilities with invisible UI and neutral tones */
+@layer utilities {
+  .bg-minimal {
+    background: #000 !important;
+  }
+  
+  .bg-quiet {
+    background: #000 !important;
+  }
+  
+  .text-neutral-gradient {
+    background: linear-gradient(135deg, #fff, #e5e5e5 70%, #bbb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .invisible-card {
+    background: rgba(24,24,24,0.8) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, 0.03);
+  }
+  
+  .invisible-card:hover {
+    background: rgba(32,32,32,0.92) !important;
+    border-color: rgba(255,255,255,0.12) !important;
+    box-shadow: 0 2px 8px 0 hsla(0, 0%, 0%, 0.05);
+    transition: all 0.2s ease;
+  }
+  
+  .quiet-button {
+    background: #191919 !important;
+    border: 1px solid #222 !important;
+    color: #fff !important;
+    transition: all 0.15s ease;
+  }
+  
+  .quiet-button:hover {
+    background: #232323 !important;
+    border-color: #222;
+    transform: translateY(-1px);
+  }
+  
+  .neutral-accent,
+  .neutral-accent-red,
+  .neutral-accent-blue {
+    background: #101010 !important;
+    color: #fff !important;
+    border: 1px solid #232323 !important;
+  }
+  
+  .whitespace-card {
+    background: #0c0c0c !important;
+    border: 1px solid #232323 !important;
+    padding: 4rem;
+    margin: 2rem 0;
+  }
+  
+  .glass-card {
+    @apply bg-black/60 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/60 rounded-2xl transition-all;
+    box-shadow: 0 8px 40px 0 #000a, 0 1.5px 8px 0 #3338;
+  }
+  
+  .dark-glass-card {
+    @apply bg-black/40 backdrop-blur-2xl border border-white/10 shadow-xl shadow-black/60 rounded-2xl transition-all;
+    box-shadow: 0 8px 40px 0 #000c, 0 1.5px 8px 0 #3336;
+  }
+  
+  .blur-accent, .blur-accent-dark {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 2.5rem;
+    filter: blur(42px);
+    opacity: 0.15;
+    background: #fff1 !important;
+  }
+  
+  .blur-accent-dark {
+    filter: blur(48px);
+    opacity: 0.13;
+    background: #fff2 !important;
+  }
+  
+  .quiet-motion {
+    animation: quiet-float 12s ease-in-out infinite;
+  }
+  
+  .minimal-shadow {
+    box-shadow: 0 1px 2px 0 hsla(0, 0%, 0%, 0.02);
+  }
+  
+  .minimal-shadow:hover {
+    box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.04);
+  }
+  
+  .frictionless-transition {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .invisible-border {
+    border: 1px solid #232323 !important;
+  }
+  
+  .invisible-border:hover {
+    border-color: #404040 !important;
+  }
+  
+  .text-silver {
+    color: #c0c0c0 !important;
+  }
+}
+
+@keyframes quiet-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
