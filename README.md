@@ -64,6 +64,7 @@ CivicWatch changes that.
 
 ## 🧱 Project Structure
 
+````
 📦 civicwatch/
 ├── public/                  # Static assets
 ├── src/
