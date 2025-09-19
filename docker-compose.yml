@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: civicwatch
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/civicwatch?schema=public"
+      JWT_SECRET: "replace_with_a_long_random_secret"
+      PORT: 4000
+      NODE_ENV: development
+    ports:
+      - '4000:4000'
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/usr/src/app:cached
+      - backend_node_modules:/usr/src/app/node_modules
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  backend_node_modules:
