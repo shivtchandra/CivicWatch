@@ -1,6 +1,8 @@
+
+
 # 🛡️ CivicWatch
 
-https://purpose-driven-creations-hub.lovable.app/
+[https://purpose-driven-creations-hub.lovable.app/](https://purpose-driven-creations-hub.lovable.app/)
 
 > **Where Serious Issues Get Serious Attention**
 
@@ -14,75 +16,69 @@ Unlike social media platforms built for entertainment, CivicWatch ensures that *
 
 Social feeds are noisy. Important community alerts get lost in between memes, trends, and viral content.
 
-CivicWatch changes that.
+CivicWatch changes that:
 
-- 🚨 **Focused Attention**: No distractions — just public safety and community well-being.
-- ⚡ **Swift Reporting**: Optimized for urgent, effective reporting — when time matters most.
-- 🛠️ **Real Impact**: Each report powers real, measurable change — not just likes.
-- 👁️‍🗨️ **Community Visibility**: Collective awareness reduces response times and deters crime.
+* 🚨 **Focused Attention**: No distractions — just public safety and community well-being.
+* ⚡ **Swift Reporting**: Optimized for urgent, effective reporting — when time matters most.
+* 🛠️ **Real Impact**: Each report powers real, measurable change — not just likes.
+* 👁️‍🗨️ **Community Visibility**: Collective awareness reduces response times and deters crime.
 
 ---
 
 ## 🔑 Key Features
 
-- 📢 **Safety Alerts**: Instant neighborhood-wide emergency alerts.
-- 🏙️ **Civic Reports**: Report broken infrastructure, sanitation issues, and more.
-- 🧒 **Missing Persons / Lost & Found**: Crowdsource visibility and help reuniting people or recovering items.
-- 🗺️ **Location-based Reporting**: Submit incidents with geotagged accuracy.
-- 📷 **Image Uploads**: Support reports with visual proof.
-- 🔄 **Real-Time Updates**: Keep communities informed as situations evolve.
-- 🔔 **Instant Notifications**: Alert users in affected localities.
-- 🔒 **Secure Authentication**: Account system via Supabase Auth.
+* 📢 **Safety Alerts**: Missing persons, lost & found, emergencies.
+* 🏙️ **Civic Reports**: Infrastructure, sanitation, transport issues.
+* 📍 **Location-based Reporting**: Submit incidents with location context.
+* 📷 **Image Uploads** *(planned)*: Reports can include proof.
+* 🔄 **Real-Time Feed**: Live updates on community issues.
+* 🔒 **Authentication**: Secure login & profile system.
 
 ---
 
 ## 🏗️ Tech Stack
 
-### 🔧 Core Frontend
-- **React** – Component-based UI
-- **TypeScript** – Static typing for safety and scale
-- **Vite** – Ultra-fast dev environment
-- **Tailwind CSS** – Utility-first responsive styling
-- **shadcn/ui** – Prebuilt, accessible UI components
-- **lucide-react** – Lightweight, modern icons
+### 🔧 Frontend
 
-### 📦 State Management & Forms
-- **React Hook Form** – Flexible, performant forms
-- **Zod** – Type-safe form validation
-- **TanStack React Query** – Smart async data fetching & caching
+* **React (TypeScript)** – UI
+* **Vite** – Fast dev/build
+* **Tailwind CSS** – Styling
+* **shadcn/ui** – UI components
+* **lucide-react** – Icons
 
-### 🧠 Backend & Integration (via Supabase)
-- **Supabase Auth** – Secure login/signup
-- **PostgreSQL** – Structured relational database
-- **Edge Functions** – Serverless logic for secure operations
-- **Supabase Storage** – (Optional) File/image uploads
+### ⚙️ Backend
 
-### 🌐 API Integrations
-- **NewsAPI** – Real-world safety-related news (with API key)
-- **Google Places API** – Location suggestions & autocomplete
-- **Resend.com** – (Optional) Transactional emails from edge functions
+* **Node.js + Express** – API server
+* **Prisma ORM** – Database access
+* **PostgreSQL** – Database (running in Docker)
+* **JWT** – Authentication
+
+### 🛠️ Dev Tools
+
+* **Docker Compose** – Postgres + Adminer + API server
+* **Nodemon** – Auto-restart backend
+* **Zod + React Hook Form** – Validation + forms
 
 ---
 
-## 🧱 Project Structure
+## 📂 Project Structure
 
-````
+```
 📦 civicwatch/
-├── public/                  # Static assets
-├── src/
-│   ├── components/          # Reusable UI components
-│   ├── pages/               # Main pages (Home, Alerts, Reports)
-│   ├── hooks/               # Custom React hooks
-│   ├── lib/                 # Utility functions and API clients
-│   ├── styles/              # Tailwind config and global styles
-│   ├── types/               # TypeScript types/interfaces
-│   └── App.tsx              # App entry point
-├── supabase/                # Edge functions & schema definitions
-├── .env                     # Environment variables
-├── vite.config.ts           # Vite config
-└── README.md                # Project documentation
-
-````
+├── backend/                # Node.js + Express + Prisma API
+│   ├── src/server.js       # API entrypoint
+│   └── prisma/             # Prisma schema & migrations
+├── src/                    # Frontend (React + Vite)
+│   ├── components/         # Reusable UI
+│   ├── hooks/              # React hooks
+│   ├── lib/                # API client wrapper
+│   ├── pages/              # Main pages
+│   └── App.tsx             # App root
+├── docker-compose.yml      # Services: Postgres, Adminer, Backend
+├── .env.example            # Example environment config
+├── package.json            # Dependencies
+└── README.md               # Documentation
+```
 
 ---
 
@@ -93,103 +89,96 @@ CivicWatch changes that.
 ```bash
 git clone https://github.com/shivtchandra/CivicWatch.git
 cd CivicWatch
-````
+```
 
-### 2. Install Dependencies
+### 2. Setup Environment Variables
+
+Copy `.env.example` → `.env` and update values if needed:
+
+```env
+# Database
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/civicwatch"
+
+# Auth
+JWT_SECRET="dev-secret-change-this"
+
+# Frontend API base
+VITE_API_BASE="http://localhost:4000/api"
+```
+
+### 3. Run Backend (API + DB)
+
+```bash
+cd backend
+docker compose up --build
+```
+
+This will start:
+
+* **Postgres** (port `5432`)
+* **Adminer** (port `8080`) → GUI for DB
+* **Backend API** (port `4000`)
+
+Check:
+
+```bash
+curl http://localhost:4000/api/health
+```
+
+### 4. Run Frontend
+
+Open another terminal:
 
 ```bash
 npm install
-```
-
-### 3. Setup Environment Variables
-
-Create a `.env` file in the root:
-
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_anon_key
-VITE_GOOGLE_API_KEY=your_google_places_api_key
-VITE_NEWS_API_KEY=your_newsapi_key
-```
-
-### 4. Run the Development Server
-
-```bash
 npm run dev
 ```
+
+Frontend will run at:
+👉 [http://localhost:5173](http://localhost:5173)
 
 ---
 
 ## 🔄 Deployment
 
-You can deploy CivicWatch to:
+Currently designed for **local Postgres (Docker)**.
+Future deployment options:
 
-* [Vercel](https://vercel.com/)
-* [Netlify](https://netlify.com/)
-* [Render](https://render.com/)
-* Supabase Hosting (Edge functions)
-
-Ensure all environment variables are set in your deployment dashboard.
-
----
-
-## 📊 Performance Insights
-
-| Time Window   | Description                                     | Effectiveness     |
-| ------------- | ----------------------------------------------- | ----------------- |
-| `0–3 Minutes` | **Prevention Window** – Alerts seen instantly   | 🟢 89% Prevention |
-| `3–8 Minutes` | **Intervention Window** – Time to act & respond | 🟡 54% Success    |
-| `8+ Minutes`  | **Response Only** – Damage control              | 🔴 23% Success    |
-
-🧠 **Community Awareness Multiplier**
-
-* 🧍‍♂️ 1 Person: Limited response
-* 👥 5+ People: Coordinated action
-* 🧑‍🤝‍🧑 20+ People: Maximum deterrence
-
----
-
-## 🔐 Authentication & Authorization
-
-* 🔑 Supabase Auth (email/password based)
-* 👤 Profiles stored securely in Supabase DB
-* 🛡️ Session tokens auto-managed client-side
+* AWS (RDS for Postgres + ECS/Fargate for backend + S3 for uploads)
+* Vercel/Netlify (frontend hosting)
 
 ---
 
 ## 📌 Roadmap
 
-* ✅ Core Reporting System
-* ✅ Real-Time Feed & Alerts
-* 🔄 AI-Powered Report Summarization *(Coming Soon)*
-* 🔄 Mobile App with Offline Reporting *(Coming Soon)*
-* 🔄 API Integrations with Local Government Portals *(Planned)*
-* 🔄 Emergency Contact Escalation Flows *(Planned)*
+* ✅ Core reporting system (alerts + civic reports)
+* ✅ Authentication & profiles
+* 🔄 Image uploads (integrate with AWS S3 / Supabase storage)
+* 🔄 Notifications (Web Push / Email)
+* 🔄 Government portal integration
+* 🔄 Mobile app version
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions to CivicWatch! To contribute:
-
 1. Fork this repo
 2. Create a new branch: `git checkout -b feat/feature-name`
-3. Make your changes
-4. Commit and push: `git commit -m "feat: add new feature"`
-5. Open a Pull Request
+3. Commit changes: `git commit -m "feat: add X"`
+4. Push branch: `git push origin feat/feature-name`
+5. Open Pull Request
 
 ---
 
 ## 📫 Contact
 
-> Maintainer: [shivachandra9490@gmail.com](mailto:shivachandra9490@gmail.com)
+Maintainer: [shivachandra9490@gmail.com](mailto:shivachandra9490@gmail.com)
 
 ---
 
 ## ⭐ Support the Mission
 
-If you believe in the power of community-driven public safety, consider starring ⭐ this repository and spreading the word!
+If you believe in community-driven public safety, star ⭐ this repo!
 
 **CivicWatch – Because Real Issues Deserve Real Action.**
 
-```
