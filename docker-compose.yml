@@ -4,8 +4,8 @@ services:
     image: postgres:15
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: shiva
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: civicwatch
     ports:
       - '5432:5432'
