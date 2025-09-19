@@ -99,8 +99,7 @@ Copy `.env.example` → `.env` and update values if needed:
 # Database
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/civicwatch"
 
-# Auth
-JWT_SECRET="dev-secret-change-this"
+
 
 # Frontend API base
 VITE_API_BASE="http://localhost:4000/api"
