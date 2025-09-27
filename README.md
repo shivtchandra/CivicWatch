@@ -51,7 +51,6 @@ CivicWatch changes that:
 * **Node.js + Express** – API server
 * **Prisma ORM** – Database access
 * **PostgreSQL** – Database (running in Docker)
-* **JWT** – Authentication
 
 ### 🛠️ Dev Tools
 
